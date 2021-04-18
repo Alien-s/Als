@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Als.Services;
+using Als.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -48,12 +50,10 @@ namespace Als
 
 
         //Method for registration of the Services
-        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
-        { }
-            //=> services
+        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
             //.AddDataBase(host.Configuration.GetSection("DataBase"))
-            //.AddServices()
-            //.AddViewModels()
-            //;
+            .AddServices()
+            .AddViewModels()
+            ;
     }
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Als.ViewModels
 {
-    class ViewModelLocator
+    internal class ViewModelLocator
     {
+        public MainWindowViewModel MainViewModel => App.Services.GetRequiredService<MainWindowViewModel>();
+        public LoginWindowViewModel LoginViewModel => App.Services.GetRequiredService<LoginWindowViewModel>();
     }
 }
