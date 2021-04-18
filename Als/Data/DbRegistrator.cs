@@ -1,4 +1,5 @@
 ﻿using Als.MDB.Context;
+using Als.MDB.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,7 @@ namespace Als.Data
                         break;
                 }
             })
-            //.AddRepositoriesInDB()
+            .AddRepositoriesInDB()
             ;
     }
 }
