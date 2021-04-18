@@ -5,11 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dict="clr-namespace:Als.Resources.Dictionaries"
         xmlns:vm="clr-namespace:Als.ViewModels"
-        xmlns:local="clr-namespace:Als"   
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:Als.Views.Windows"
         DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
         Title="{x:Static dict:MainWindowDict.Title}" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
 
-    <Grid>
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:LoginWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Main">
+                <MenuItem Header="Log Out"/>
+                <Separator Margin="0,10,0,5"/>
+                <MenuItem Header="Exit" Command="{StaticResource ExitFromApplicationCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Users">
+                <MenuItem Header="User's management" Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:UserManagerWindow}"/>
+            </MenuItem>
+        </Menu>
 
-    </Grid>
+        <StatusBar DockPanel.Dock="Bottom">
+
+        </StatusBar>
+
+        <StackPanel Orientation="Horizontal">
+            <!--<TextBlock x:Name="txtUserRole" Text="{Binding CurrentUserRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>-->
+
+
+
+        </StackPanel>
+
+
+    </DockPanel>
 </Window>

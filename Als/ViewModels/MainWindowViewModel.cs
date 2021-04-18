@@ -7,13 +7,12 @@ namespace Als.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
-        private readonly IRepository<User> _UserRepository;
-
-        public MainWindowViewModel(IRepository<User> userRepository)
+        
+        #region CONSTRUCTOR
+        public MainWindowViewModel()
         {
-            _UserRepository = userRepository;
 
-            //var us = userRepository.Items.ToArray();
         }
+        #endregion CONSTRUCTOR
     }
 }

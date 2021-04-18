@@ -10,7 +10,7 @@ namespace Als.MDB.Repositories
 {
     class UsersRepository : DbRepository<User>
     {
-        //Overrided methode for receiving of the Users because we need ti receive from DB the data about Positions and Roles
+        //Overrided methode for receiving of the Users because we need to receive from DB the data about Positions and Roles also
         public override IQueryable<User> Items => base.Items
             .Include(item => item.Position)
             .Include(item => item.Role);

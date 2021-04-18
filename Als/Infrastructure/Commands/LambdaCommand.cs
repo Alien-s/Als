@@ -1,6 +1,7 @@
 ﻿using Als.Infrastructure.Commands.BaseCommand;
 using System;
 
+
 namespace Als.Infrastructure.Commands
 {
     internal class LambdaCommand : Command

@@ -2,11 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:Als.ViewModels"
+             xmlns:cmd="clr-namespace:Als.Infrastructure.Commands"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator"/>
 
+            <cmd:OpenWindowCommand x:Key="OpenWindowCommand"/>
+            <cmd:CloseWindowCommand x:Key="CloseWindowCommand"/>
+            <cmd:ExitFromApplicationCommand x:Key="ExitFromApplicationCommand"/>
+            
             
         </ResourceDictionary>
     </Application.Resources>

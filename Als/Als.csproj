@@ -13,6 +13,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MainWindowDict.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Dictionaries\UserManagerWindowDict.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UserManagerWindowDict.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +25,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowDict.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\UserControls\" />
+    <EmbeddedResource Update="Resources\Dictionaries\UserManagerWindowDict.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserManagerWindowDict.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
