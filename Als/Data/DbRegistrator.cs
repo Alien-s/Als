@@ -19,7 +19,7 @@ namespace Als.Data
                     default: throw new InvalidOperationException($"Connection type {type} is not supported");
 
                     case "MSSQL":
-                    case "AdditionalConnection":
+                    case "LocalMSSQL":
                         opt.UseSqlServer(Configuration.GetConnectionString(type));
                         //Can use also: UseSQLite, UseInMemoryDatabase ...
                         break;
