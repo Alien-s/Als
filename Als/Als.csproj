@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Infrastructure\Command\BaseCommand\" />
-    <Folder Include="ViewModels\BaseViewModel\" />
     <Folder Include="Views\UserControls\" />
   </ItemGroup>
 
