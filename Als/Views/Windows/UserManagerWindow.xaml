@@ -4,14 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dict="clr-namespace:Als.Resources.Dictionaries"
+        xmlns:vm="clr-namespace:Als.ViewModels"
         xmlns:local="clr-namespace:Als.Views.Windows"
-        
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        DataContext="{Binding UserManagerWindowVewModel, Source={StaticResource Locator}}"
         Title="{x:Static dict:UserManagerWindowDict.Title}" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ShowUsersViewCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     
     <DockPanel>
-        <TabControl DockPanel.Dock="Top">
-            <TabItem Header="User"/>
-            <TabItem Header="Positions"/>
-        </TabControl>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="{x:Static dict:UserManagerWindowDict.Users}" Command="{Binding ShowUsersViewCommand}"/>
+            <MenuItem Header="{x:Static dict:UserManagerWindowDict.Positions}" Command="{Binding ShowPositionsViewCommand}"/>
+        </Menu>
+        
+        <Grid>
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
     </DockPanel>
 </Window>

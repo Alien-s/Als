@@ -1,4 +1,4 @@
-﻿using Als.Infrastructure.Commands.BaseCommand;
+﻿using Als.Infrastructure.Commands.BaseCommands;
 using System;
 using System.Windows;
 

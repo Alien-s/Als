@@ -8,6 +8,9 @@ namespace Als.ViewModels
         public static IServiceCollection AddViewModels(this IServiceCollection services) => services
             .AddSingleton<MainWindowViewModel>()
             .AddSingleton<LoginWindowViewModel>()
+            .AddSingleton<UserManagerWindowVewModel>()
+            //.AddSingleton<UsersViewViewModel>()
+            //.AddSingleton<PositionsViewViewModel>()
             ;
     }
 }

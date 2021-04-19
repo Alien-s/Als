@@ -1,9 +1,7 @@
 ﻿using Als.Interfaces;
 using Als.MDB.Entities;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Als.MDB.Repositories
 {

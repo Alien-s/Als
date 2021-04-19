@@ -11,7 +11,10 @@
             <cmd:OpenWindowCommand x:Key="OpenWindowCommand"/>
             <cmd:CloseWindowCommand x:Key="CloseWindowCommand"/>
             <cmd:ExitFromApplicationCommand x:Key="ExitFromApplicationCommand"/>
-            
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Templates\ModelView.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
     </Application.Resources>

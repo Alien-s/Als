@@ -2,7 +2,7 @@
 using System.Windows.Input;
 
 
-namespace Als.Infrastructure.Commands.BaseCommand
+namespace Als.Infrastructure.Commands.BaseCommands
 {
     internal abstract class Command : ICommand
     {
