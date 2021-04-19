@@ -12,10 +12,10 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadUserCollectionCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadUserManagerWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -75,7 +75,7 @@
 
             <GroupBox Grid.Row="0" Margin="10">
                 <GroupBox.Header>
-                    <TextBlock Text="{x:Static dict:UserManagerWindowDict.UserInfo}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static dict:UserManagerWindowDict.UserModeDefault}" FontWeight="Bold"/>
                 </GroupBox.Header>
                 <DockPanel>
                     <Grid DockPanel.Dock="Top">
@@ -96,47 +96,47 @@
                             <RowDefinition/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Login"/>
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Password"/>
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Firstname"/>
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Surname"/>
-                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Patronymic*"/>
-                        <TextBlock Grid.Column="0" Grid.Row="5" Text="E-mail"/>
-                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Handy"/>
-                        <TextBlock Grid.Column="0" Grid.Row="7" Text="Phone"/>
-                        <TextBlock Grid.Column="0" Grid.Row="8" Text="Position"/>
-                        <TextBlock Grid.Column="0" Grid.Row="9" Text="Role"/>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Static dict:UserManagerWindowDict.Login}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{x:Static dict:UserManagerWindowDict.Password}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Static dict:UserManagerWindowDict.Firstname}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="{x:Static dict:UserManagerWindowDict.Surname}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static dict:UserManagerWindowDict.Patronymic}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="5" Text="{x:Static dict:UserManagerWindowDict.Email}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="6" Text="{x:Static dict:UserManagerWindowDict.Handy}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="7" Text="{x:Static dict:UserManagerWindowDict.Phone}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="8" Text="{x:Static dict:UserManagerWindowDict.Position}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="9" Text="{x:Static dict:UserManagerWindowDict.Role}"/>
 
                         <TextBox x:Name="txtNewUserLogin" 
                                  Grid.Column="1" Grid.Row="0" 
                                  Style="{DynamicResource txtFocusableStyle}" 
-                                 Text="{Binding SelectedUser.UserLogin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Login, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}"
-                                 Text="{Binding SelectedUser.UserPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Password, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="2" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}" 
-                                 Text="{Binding SelectedUser.UserFirstname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Name, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="3" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}" 
-                                 Text="{Binding SelectedUser.UserSurname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Surname, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="4" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}" 
-                                 Text="{Binding SelectedUser.UserPatronymic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Patronymic, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="5" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}" 
-                                 Text="{Binding SelectedUser.UserEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding SelectedUser.Email, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="6" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}" 
-                                 Text="{Binding SelectedUser.UserHandy, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Handy, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Grid.Column="1" Grid.Row="7" 
                                  Style="{DynamicResource txtEditModeTriggerStyle}" 
-                                 Text="{Binding SelectedUser.UserPhone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                 Text="{Binding SelectedUser.Phone, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <ComboBox Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
                                   Grid.Column="1" Grid.Row="8" 
                                   ItemsSource="{Binding AllPositions}" 
-                                  SelectedItem="{Binding SelectedUser.PositionId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                  SelectedItem="{Binding SelectedUser.Position, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Style="{StaticResource TextBlockAtComboBox}" 
@@ -168,7 +168,7 @@
                         <ComboBox Grid.Column="1" Grid.Row="9" 
                                   Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
                                   ItemsSource="{Binding AllRoles}" 
-                                  SelectedItem="{Binding SelectedUser.RoleId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                  SelectedItem="{Binding SelectedUser.Role, UpdateSourceTrigger=PropertyChanged}">
 
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>

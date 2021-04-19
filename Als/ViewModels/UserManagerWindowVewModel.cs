@@ -18,45 +18,14 @@ namespace Als.ViewModels
     {
         #region PROPERTIES
 
-        /// <summary>Repository of Users</summary>
-        private readonly IRepository<User> _UserRepository;
+        /// <summary>Property for reference to the Properties of the MainWindowViewModel</summary>
+        private MainWindowViewModel mainWindowViewModel;
 
-        /// <summary>INotifyProperty for User collection</summary>
-        private ObservableCollection<User> _UserCollection = new ObservableCollection<User>();
-        public ObservableCollection<User> UserCollection { get => _UserCollection; set => Set(ref _UserCollection, value); }
-
-        #endregion PROPERTIES
-
-
-        #region COMMANDS
-
-        #region LoadUserCollectionCommand
-        private ICommand _LoadUserCollectionCommand;
-        public ICommand LoadUserCollectionCommand => _LoadUserCollectionCommand
-            ??= new LambdaCommandAsync(OnLoadUserCollectionCommandExecuted, CanLoadUserCollectionCommandExecute);
-
-        //Method for permisions for the Command LoadUserCollection
-        private bool CanLoadUserCollectionCommandExecute(object parameter) => true;
-
-        //Method for execution for the Command LoadUserCollection
-        private async Task OnLoadUserCollectionCommandExecuted(object parameter)
-        {
-            UserCollection.Clear();
-            UserCollection.Add(await _UserRepository.Items.ToArrayAsync());
-        }
-        #endregion LoadUserCollectionCommand
-
-        #endregion COMMANDS
-
-
-        #region FILTER OF LIST OF THE USERS
-
-        // INotifyPropertyChanged properties for filtration of the users
+        /// <summary>INotifyProperty for FILTRATION of the users</summary>
         private ICollectionView selectedItems;
         public ICollectionView SelectedItems { get => selectedItems; set => Set(ref selectedItems, value); }
 
-
-        //Property for text field of the filter
+        /// <summary>Property for text field of the FILTER</summary>
         private string itemsFilterText = string.Empty;
         public string ItemsFilterText
         {
@@ -67,6 +36,73 @@ namespace Als.ViewModels
                 SelectedItems.Filter += Filter;
             }
         }
+
+        /// <summary>INotifyProperty for filling of the TextBoxes with Selected User data</summary>
+        private User selectedUser = new User();
+        public User SelectedUser { get => selectedUser; set => Set(ref selectedUser, value); }
+
+        /// <summary>INotifyProperty for GropBoxHeader</summary>
+        private string userMode = "User Info";
+        public string UserMode { get => userMode; set => Set(ref userMode, value); }
+
+        #endregion PROPERTIES
+
+
+        #region COMMANDS
+
+        #region LoadUserManagerWindowCommand
+        /// <summary>LoadUserManagerWindowCommand</summary>
+        private ICommand _LoadUserManagerWindowCommand;
+        public ICommand LoadUserManagerWindowCommand => _LoadUserManagerWindowCommand
+            ??= new LambdaCommand(OnLoadUserManagerWindowCommandExecuted, CanLoadUserManagerWindowCommandExecute);
+
+        //Method for permisions for the Command LoadUserManagerWindow
+        private bool CanLoadUserManagerWindowCommandExecute(object parameter) => true;
+
+        //Method for execution for the Command LoadUserManagerWindow
+        private void OnLoadUserManagerWindowCommandExecuted(object parameter) 
+        {
+            SelectedUser = null;
+        }
+        #endregion LoadUserManagerWindowCommand
+
+
+        #region AddNewUserCommand
+        /// <summary>Command for adding of the new User</summary>
+        private ICommand _AddNewUserCommand;
+        public ICommand AddNewUserCommand => _AddNewUserCommand
+            ??= new LambdaCommand(OnAddNewUserCommandExecuted, CanAddNewUserCommandExecute);
+
+        //Method for permisions for the Command AddNewUser
+        private bool CanAddNewUserCommandExecute(object parameter) => true;
+
+        //Method for execution for the Command AddNewUser
+        private void OnAddNewUserCommandExecuted(object parameter) { }
+        #endregion AddNewUserCommand
+
+
+        #region ClearFilterCommand
+        /// <summary>Command for clear of the filter for Users</summary>
+        private ICommand _ClearFilterCommand;
+        public ICommand ClearFilterCommand => _ClearFilterCommand 
+            ??= new LambdaCommand(OnClearFilterCommandExecuted, CanClearFilterCommandExecute);
+
+        //Method for permisions for the Command ClearFilter
+        private bool CanClearFilterCommandExecute(object parameter) => true;
+
+        //Method for execution for the Command ClearFilter
+        private void OnClearFilterCommandExecuted(object parameter)
+        {
+            ItemsFilterText = string.Empty;
+            SelectedUser = null;
+        }
+        #endregion ClearFilterCommand
+
+
+        #endregion COMMANDS
+
+
+        #region FILTER OF LIST OF THE USERS
 
         //This method is filtering of the users depends of the request from text field
         private bool Filter(object obj)
@@ -88,12 +124,12 @@ namespace Als.ViewModels
 
         #region CONSTRUCTOR
 
-        public UserManagerWindowVewModel(IRepository<User> UserRepository)
+        public UserManagerWindowVewModel(MainWindowViewModel mainViewModel)
         {
-            _UserRepository = UserRepository;
+            mainWindowViewModel = mainViewModel;
 
             //Creating of the collection of users for demonstration at DataGrid and filtration
-            SelectedItems = CollectionViewSource.GetDefaultView(UserCollection);
+            SelectedItems = CollectionViewSource.GetDefaultView(mainWindowViewModel.UserCollection);
         }
 
         #endregion CONSTRUCTOR

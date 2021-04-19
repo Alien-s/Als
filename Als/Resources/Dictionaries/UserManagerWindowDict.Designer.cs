@@ -61,11 +61,29 @@ namespace Als.Resources.Dictionaries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firstname.
         /// </summary>
         public static string Firstname {
             get {
                 return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handy.
+        /// </summary>
+        public static string Handy {
+            get {
+                return ResourceManager.GetString("Handy", resourceCulture);
             }
         }
         
@@ -79,11 +97,65 @@ namespace Als.Resources.Dictionaries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patronymic*.
+        /// </summary>
+        public static string Patronymic {
+            get {
+                return ResourceManager.GetString("Patronymic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        public static string Position {
+            get {
+                return ResourceManager.GetString("Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Positions.
         /// </summary>
         public static string Positions {
             get {
                 return ResourceManager.GetString("Positions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         
@@ -106,11 +178,29 @@ namespace Als.Resources.Dictionaries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new User.
+        /// </summary>
+        public static string UserModeAdd {
+            get {
+                return ResourceManager.GetString("UserModeAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Info.
         /// </summary>
-        public static string UserInfo {
+        public static string UserModeDefault {
             get {
-                return ResourceManager.GetString("UserInfo", resourceCulture);
+                return ResourceManager.GetString("UserModeDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit User.
+        /// </summary>
+        public static string UserModeEdit {
+            get {
+                return ResourceManager.GetString("UserModeEdit", resourceCulture);
             }
         }
         
