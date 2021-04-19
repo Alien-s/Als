@@ -1,5 +1,6 @@
 ﻿using Als.Infrastructure.Commands.LambdaCommands;
 using Als.MDB.Entities;
+using Als.Services.Interfaces;
 using Als.ViewModels.BaseViewModel;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -14,6 +15,9 @@ namespace Als.ViewModels
 
         /// <summary>Property for reference to the Properties of the MainWindowViewModel</summary>
         private MainWindowViewModel _MainWindowViewModel;
+
+        /// <summary>Property UserDialog</summary>
+        private IUserDialog _UserDialog;
 
         /// <summary>INotifyProperty for FILTRATION of the users</summary>
         private ICollectionView _SelectedItems;
@@ -75,6 +79,18 @@ namespace Als.ViewModels
         private void OnAddNewUserCommandExecuted(object parameter) 
         {
             var new_user = new User();
+
+            if (_UserDialog.Edit(new_user))
+            {
+                return;
+            }
+            else
+            {
+                //_MainWindowViewModel.UserRepository.Add(new_user);
+                _MainWindowViewModel.UserCollection.Add(_MainWindowViewModel.UserRepository.Add(new_user));
+            }
+
+
         }
         #endregion AddNewUserCommand
 
@@ -143,9 +159,10 @@ namespace Als.ViewModels
 
         #region CONSTRUCTOR
 
-        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel)
+        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel, IUserDialog UserDialog)
         {
             _MainWindowViewModel = MainViewModel;
+            _UserDialog = UserDialog;
 
             //Creating of the collection of users for demonstration at DataGrid and filtration
             SelectedItems = CollectionViewSource.GetDefaultView(_MainWindowViewModel.UserCollection);

@@ -12,15 +12,9 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadUserCollectionCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
-    <!--<i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:LoginWindow}"/>
         </i:EventTrigger>
-    </i:Interaction.Triggers>-->
-
+    </i:Interaction.Triggers>
 
     <DockPanel>
         <Grid DockPanel.Dock="Top" Background="LightGray">
@@ -41,8 +35,8 @@
             </Menu>
             
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Role" />
-                <TextBlock Text="{Binding CurrentUser}"/>
+                <TextBlock Text="{Binding CurrentUser.Role.Name}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock Text="{Binding CurrentUser.Name}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </StackPanel>
 
         </Grid>
