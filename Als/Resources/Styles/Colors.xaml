@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Default Colors of the Buttons-->
+
+    <!--<SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#FF000000"/>-->
+
+    <!--<SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>-->
+
+    <!--<SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>-->
+
+    <!--<SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>-->
+
+
+    <!--Colors of the Buttons-->
+    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFCC66"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#CC8800"/>
+    <SolidColorBrush x:Key="Button.Static.Foreground" Color="#000000"/>
+
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFFF00"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#CCCC00"/>
+
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#EEEE88"/>
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#999900"/>
+
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#F4F4F4"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#ADB2B5"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#838383"/>
+    
+    
+</ResourceDictionary>

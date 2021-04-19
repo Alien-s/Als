@@ -9,8 +9,6 @@ namespace Als.ViewModels
             .AddSingleton<MainWindowViewModel>()
             .AddSingleton<LoginWindowViewModel>()
             .AddSingleton<UserManagerWindowVewModel>()
-            //.AddSingleton<UsersViewViewModel>()
-            //.AddSingleton<PositionsViewViewModel>()
             ;
     }
 }

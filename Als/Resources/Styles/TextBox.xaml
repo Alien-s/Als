@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="txtBoxDefaultStyle" TargetType="TextBox">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10,5"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <Style x:Key="txtHidenModeTriggerStyle" TargetType="TextBox" BasedOn="{StaticResource txtBoxDefaultStyle}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=chkEditModeControl, Path=IsChecked}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="txtEditModeTriggerStyle" TargetType="TextBox" BasedOn="{StaticResource txtBoxDefaultStyle}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=chkEditModeControl, Path=IsChecked}" Value="True">
+                <Setter Property="IsReadOnly" Value="False"/>
+                <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="txtFocusableStyle" TargetType="TextBox" BasedOn="{StaticResource txtEditModeTriggerStyle}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=chkEditModeControl, Path=IsChecked}" Value="True">
+                <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=txtNewUserLogin}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+</ResourceDictionary>

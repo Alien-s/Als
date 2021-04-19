@@ -1,12 +1,56 @@
 ﻿<Window x:Class="Als.Views.Windows.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        DataContext="{Binding LoginViewModel, Source={StaticResource Locator}}"
         xmlns:local="clr-namespace:Als.Views.Windows"
-        mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
-    <Grid>
         
+       Height="245" MinHeight="245" Width="300" MinWidth="300" WindowStartupLocation="CenterScreen" Topmost="True" WindowStyle="None">
+
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome NonClientFrameEdges="None"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="Coral" Background="Coral">
+            <Label Content="Identification"/>
+        </Border>
+
+        <StackPanel Grid.Row="1" FocusManager.FocusedElement="{Binding ElementName=txtLogin}">
+            <Label Content="Login" Margin="0,10,0,0"/>
+            <TextBox x:Name="txtLogin" Style="{StaticResource txtBoxDefaultStyle}" Height="25" Margin="10,0" IsReadOnly="False" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Password" Margin="0,10,0,0"/>
+            <PasswordBox x:Name="pswPassword" Height="25" VerticalContentAlignment="Center" Margin="10,0" Padding="2" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,20,10,10">
+
+            <TextBlock x:Name="txtAccess" Text="{Binding Access}" Visibility="Collapsed"/>
+
+            <Button Style="{StaticResource btnDefaultStyle}" Content="Cancel" Margin="5" Height="25" Width="60" IsCancel="True" Command="{StaticResource ExitFromApplicationCommand}"/>
+
+            <Button Style="{StaticResource btnDefaultStyle}" Content="LogIn" Margin="5,5,0,5" Height="25" Width="60" IsDefault="True" Command="{Binding LogInCommand}" CommandParameter="{Binding ElementName=pswPassword}">
+                <i:Interaction.Triggers>
+                    <i:PropertyChangedTrigger Binding="{Binding ElementName=txtAccess, Path=Text}">
+                        <i:InvokeCommandAction Command="{StaticResource CloseWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    </i:PropertyChangedTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+        </StackPanel>
     </Grid>
 </Window>
