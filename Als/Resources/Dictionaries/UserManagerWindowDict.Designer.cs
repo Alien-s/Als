@@ -61,6 +61,24 @@ namespace Als.Resources.Dictionaries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Firstname.
+        /// </summary>
+        public static string Firstname {
+            get {
+                return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Positions.
         /// </summary>
         public static string Positions {
@@ -70,11 +88,29 @@ namespace Als.Resources.Dictionaries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User manager.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Info.
+        /// </summary>
+        public static string UserInfo {
+            get {
+                return ResourceManager.GetString("UserInfo", resourceCulture);
             }
         }
         

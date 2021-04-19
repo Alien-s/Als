@@ -4,26 +4,244 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dict="clr-namespace:Als.Resources.Dictionaries"
-        xmlns:vm="clr-namespace:Als.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:Als.Views.Windows"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         DataContext="{Binding UserManagerWindowVewModel, Source={StaticResource Locator}}"
-        Title="{x:Static dict:UserManagerWindowDict.Title}" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="{x:Static dict:UserManagerWindowDict.Title}" Height="530" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding ShowUsersViewCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadUserCollectionCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="{x:Static dict:UserManagerWindowDict.Users}" Command="{Binding ShowUsersViewCommand}"/>
-            <MenuItem Header="{x:Static dict:UserManagerWindowDict.Positions}" Command="{Binding ShowPositionsViewCommand}"/>
-        </Menu>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Margin="10">
+            <GroupBox.Header>
+                <TextBlock Text="{x:Static dict:UserManagerWindowDict.Users}" FontWeight="Bold"/>
+            </GroupBox.Header>
+
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top" Margin="10,10,10,0">
+                    <Button Margin="3,0,0,0" Command="{Binding ClearFilterCommand}" DockPanel.Dock="Right" Background="AliceBlue">
+                        <Button.Content>
+                            <fa:ImageAwesome Height="16" Icon="Solid_Broom" Foreground="DarkOrange" ToolTip="Clear filter"/>
+                        </Button.Content>
+                    </Button>
+                    <fa:ImageAwesome Height="20" Icon="Brands_Searchengin" Foreground= "OrangeRed" Margin="0,0,3,0"/>
+                    <TextBox Style="{StaticResource txtBoxDefaultStyle}" Margin="0" IsReadOnly="False" Text="{Binding ItemsFilterText, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+
+                <DataGrid x:Name="listOfUsersDataGrid" 
+                          Margin="10,5" FontSize="12"
+                          ItemsSource="{Binding SelectedItems}" 
+                          SelectedItem="{Binding Path=SelectedUser}"
+                          HeadersVisibility="Column"
+                          AlternatingRowBackground="AliceBlue" 
+                          Background="White"
+                          GridLinesVisibility="All"
+                          HorizontalGridLinesBrush="AliceBlue"
+                          VerticalGridLinesBrush="DarkGray"
+                          AutoGenerateColumns="False"
+                          CanUserReorderColumns="False" 
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          EnableRowVirtualization="True"
+                          VirtualizingPanel.IsContainerVirtualizable="True"
+                          VirtualizingPanel.IsVirtualizing="True"
+                          VirtualizingPanel.VirtualizationMode="Recycling">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="50" Header="{x:Static dict:UserManagerWindowDict.Id}" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Width="*" Header="{x:Static dict:UserManagerWindowDict.Firstname}" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Width="*" Header="{x:Static dict:UserManagerWindowDict.Surname}" Binding="{Binding Surname}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
         
-        <Grid>
-            <ContentControl Content="{Binding CurrentViewModel}"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Grid.Row="0" Margin="10">
+                <GroupBox.Header>
+                    <TextBlock Text="{x:Static dict:UserManagerWindowDict.UserInfo}" FontWeight="Bold"/>
+                </GroupBox.Header>
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Login"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Password"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Firstname"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Surname"/>
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Patronymic*"/>
+                        <TextBlock Grid.Column="0" Grid.Row="5" Text="E-mail"/>
+                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Handy"/>
+                        <TextBlock Grid.Column="0" Grid.Row="7" Text="Phone"/>
+                        <TextBlock Grid.Column="0" Grid.Row="8" Text="Position"/>
+                        <TextBlock Grid.Column="0" Grid.Row="9" Text="Role"/>
+
+                        <TextBox x:Name="txtNewUserLogin" 
+                                 Grid.Column="1" Grid.Row="0" 
+                                 Style="{DynamicResource txtFocusableStyle}" 
+                                 Text="{Binding SelectedUser.UserLogin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}"
+                                 Text="{Binding SelectedUser.UserPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}" 
+                                 Text="{Binding SelectedUser.UserFirstname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Grid.Row="3" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}" 
+                                 Text="{Binding SelectedUser.UserSurname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}" 
+                                 Text="{Binding SelectedUser.UserPatronymic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Grid.Row="5" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}" 
+                                 Text="{Binding SelectedUser.UserEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Column="1" Grid.Row="6" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}" 
+                                 Text="{Binding SelectedUser.UserHandy, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <TextBox Grid.Column="1" Grid.Row="7" 
+                                 Style="{DynamicResource txtEditModeTriggerStyle}" 
+                                 Text="{Binding SelectedUser.UserPhone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                        <ComboBox Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
+                                  Grid.Column="1" Grid.Row="8" 
+                                  ItemsSource="{Binding AllPositions}" 
+                                  SelectedItem="{Binding SelectedUser.PositionId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource TextBlockAtComboBox}" 
+                                               Text="{Binding PositionTitle}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            <!--<ComboBox.SelectedIndex>
+                                <Binding Path="SelectedUser.PositionId"
+                                         ConverterParameter="Position">
+                                    <Binding.Converter>
+                                        <converter:IndexByIdConverter/>
+                                    </Binding.Converter>
+                                </Binding>
+                            </ComboBox.SelectedIndex>-->
+                        </ComboBox>
+
+                        <TextBox x:Name="txt" Grid.Column="1" Grid.Row="8" 
+                                 Style="{DynamicResource txtHidenModeTriggerStyle}">
+                            <!--<TextBox.Text>
+                                <Binding Path="SelectedUser.PositionId"
+                                         ConverterParameter="Position">
+                                    <Binding.Converter>
+                                        <converter:TitleByIdConverter/>
+                                    </Binding.Converter>
+                                </Binding>
+                            </TextBox.Text>-->
+                        </TextBox>
+
+                        <ComboBox Grid.Column="1" Grid.Row="9" 
+                                  Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
+                                  ItemsSource="{Binding AllRoles}" 
+                                  SelectedItem="{Binding SelectedUser.RoleId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource TextBlockAtComboBox}" 
+                                               Text="{Binding RoleTitle}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            <!--<ComboBox.SelectedIndex>
+                                <Binding Path="SelectedUser.RoleId"
+                                         ConverterParameter="Role">
+                                    <Binding.Converter>
+                                        <converter:IndexByIdConverter/>
+                                    </Binding.Converter>
+                                </Binding>
+                            </ComboBox.SelectedIndex>-->
+                        </ComboBox>
+
+                        <TextBox Grid.Column="1" Grid.Row="9" Style="{DynamicResource txtHidenModeTriggerStyle}">
+                            <!--<TextBox.Text>
+                                <Binding Path="SelectedUser.RoleId" 
+                                         ConverterParameter="Role">
+                                    <Binding.Converter>
+                                        <converter:TitleByIdConverter/>
+                                    </Binding.Converter>
+                                </Binding>
+                            </TextBox.Text>-->
+                        </TextBox>
+                    </Grid>
+
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"  HorizontalAlignment="Right">
+
+                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="Delete" Command="{Binding DeleteOfUserCommand}"/>
+
+                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="Add new user" Command="{Binding AddNewUserCommand}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="True"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="Edit user" Command="{Binding EditUserCommand}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="True"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                        <Button Style="{DynamicResource btnVisibleModeTriggerStyle}" Content="Save" Command="{Binding SaveChangingsByUserCommand}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="False"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                        <Button Style="{DynamicResource btnVisibleModeTriggerStyle}" Content="Cancel" Command="{Binding CancelOfUserEditModeCommand}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="False"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </GroupBox>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10">
+                <CheckBox x:Name="chkEditModeControl" Content="EditModeControl" Visibility="Hidden" VerticalAlignment="Center"/>
+                <Button Style="{StaticResource btnDefaultStyle}" Content="Close" IsCancel="True"/>
+            </StackPanel>
+
         </Grid>
-    </DockPanel>
+    </Grid>
 </Window>
