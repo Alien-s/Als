@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Als</name>
+    </assembly>
+    <members>
+        <member name="T:Als.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:Als.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Als.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:Als.Resources.Dictionaries.MainWindowDict">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.MainWindowDict.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.MainWindowDict.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.MainWindowDict.Title">
+            <summary>
+              Looks up a localized string similar to Commercial offers creation.
+            </summary>
+        </member>
+        <member name="T:Als.Resources.Dictionaries.UserManagerWindowDict">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Email">
+            <summary>
+              Looks up a localized string similar to E-mail.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Firstname">
+            <summary>
+              Looks up a localized string similar to Firstname.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Handy">
+            <summary>
+              Looks up a localized string similar to Handy.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Id">
+            <summary>
+              Looks up a localized string similar to Id.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Login">
+            <summary>
+              Looks up a localized string similar to Login.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Password">
+            <summary>
+              Looks up a localized string similar to Password.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Patronymic">
+            <summary>
+              Looks up a localized string similar to Patronymic*.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Phone">
+            <summary>
+              Looks up a localized string similar to Phone.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Position">
+            <summary>
+              Looks up a localized string similar to Position.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Positions">
+            <summary>
+              Looks up a localized string similar to Positions.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Role">
+            <summary>
+              Looks up a localized string similar to Role.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Surname">
+            <summary>
+              Looks up a localized string similar to Surname.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Title">
+            <summary>
+              Looks up a localized string similar to User manager.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.UserModeAdd">
+            <summary>
+              Looks up a localized string similar to Add new User.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.UserModeDefault">
+            <summary>
+              Looks up a localized string similar to User Info.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.UserModeEdit">
+            <summary>
+              Looks up a localized string similar to Edit User.
+            </summary>
+        </member>
+        <member name="P:Als.Resources.Dictionaries.UserManagerWindowDict.Users">
+            <summary>
+              Looks up a localized string similar to Users.
+            </summary>
+        </member>
+        <member name="F:Als.ViewModels.MainWindowViewModel._UserRepository">
+            <summary>Repository of Users</summary>
+        </member>
+        <member name="F:Als.ViewModels.MainWindowViewModel._UserCollection">
+            <summary>INotifyProperty for User collection</summary>
+        </member>
+        <member name="F:Als.ViewModels.MainWindowViewModel._CurrentUser">
+            <summary>INotifyProperty  </summary>
+        </member>
+        <member name="F:Als.ViewModels.MainWindowViewModel._LoadUserCollectionCommand">
+            <summary>Command for load all users from Database</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._MainWindowViewModel">
+            <summary>Property for reference to the Properties of the MainWindowViewModel</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._SelectedItems">
+            <summary>INotifyProperty for FILTRATION of the users</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._ItemsFilterText">
+            <summary>Property for text field of the FILTER</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._SelectedUser">
+            <summary>INotifyProperty for filling of the TextBoxes with Selected User data</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._UserMode">
+            <summary>INotifyProperty for GropBoxHeader</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._LoadUserManagerWindowCommand">
+            <summary>LoadUserManagerWindowCommand</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._AddNewUserCommand">
+            <summary>Command for adding of the new User</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._RemoveUserCommand">
+            <summary>Command for delete an User</summary>
+        </member>
+        <member name="F:Als.ViewModels.UserManagerWindowVewModel._ClearFilterCommand">
+            <summary>Command for clear of the filter for Users</summary>
+        </member>
+        <member name="T:Als.Views.Windows.LoginWindow">
+            <summary>
+            Interaction logic for LoginWindow.xaml
+            </summary>
+            <summary>
+            LoginWindow
+            </summary>
+        </member>
+        <member name="M:Als.Views.Windows.LoginWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Als.Views.Windows.UserManagerWindow">
+            <summary>
+            Interaction logic for UserManagerWindow.xaml
+            </summary>
+            <summary>
+            UserManagerWindow
+            </summary>
+        </member>
+        <member name="M:Als.Views.Windows.UserManagerWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Als.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:Als.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

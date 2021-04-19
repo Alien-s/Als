@@ -1,13 +1,7 @@
 ﻿using Als.Infrastructure.Commands.LambdaCommands;
-using Als.Interfaces;
 using Als.MDB.Entities;
 using Als.ViewModels.BaseViewModel;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -19,31 +13,31 @@ namespace Als.ViewModels
         #region PROPERTIES
 
         /// <summary>Property for reference to the Properties of the MainWindowViewModel</summary>
-        private MainWindowViewModel mainWindowViewModel;
+        private MainWindowViewModel _MainWindowViewModel;
 
         /// <summary>INotifyProperty for FILTRATION of the users</summary>
-        private ICollectionView selectedItems;
-        public ICollectionView SelectedItems { get => selectedItems; set => Set(ref selectedItems, value); }
+        private ICollectionView _SelectedItems;
+        public ICollectionView SelectedItems { get => _SelectedItems; set => Set(ref _SelectedItems, value); }
 
         /// <summary>Property for text field of the FILTER</summary>
-        private string itemsFilterText = string.Empty;
+        private string _ItemsFilterText = string.Empty;
         public string ItemsFilterText
         {
-            get => itemsFilterText;
+            get => _ItemsFilterText;
             set
             {
-                Set(ref itemsFilterText, value);
+                Set(ref _ItemsFilterText, value);
                 SelectedItems.Filter += Filter;
             }
         }
 
         /// <summary>INotifyProperty for filling of the TextBoxes with Selected User data</summary>
-        private User selectedUser = new User();
-        public User SelectedUser { get => selectedUser; set => Set(ref selectedUser, value); }
+        private User _SelectedUser = new User();
+        public User SelectedUser { get => _SelectedUser; set => Set(ref _SelectedUser, value); }
 
         /// <summary>INotifyProperty for GropBoxHeader</summary>
-        private string userMode = "User Info";
-        public string UserMode { get => userMode; set => Set(ref userMode, value); }
+        private string _UserMode = Resources.Dictionaries.UserManagerWindowDict.UserModeDefault;
+        public string UserMode { get => _UserMode; set => Set(ref _UserMode, value); }
 
         #endregion PROPERTIES
 
@@ -62,6 +56,7 @@ namespace Als.ViewModels
         //Method for execution for the Command LoadUserManagerWindow
         private void OnLoadUserManagerWindowCommandExecuted(object parameter) 
         {
+            ItemsFilterText = string.Empty;
             SelectedUser = null;
         }
         #endregion LoadUserManagerWindowCommand
@@ -77,8 +72,32 @@ namespace Als.ViewModels
         private bool CanAddNewUserCommandExecute(object parameter) => true;
 
         //Method for execution for the Command AddNewUser
-        private void OnAddNewUserCommandExecuted(object parameter) { }
+        private void OnAddNewUserCommandExecuted(object parameter) 
+        {
+            var new_user = new User();
+        }
         #endregion AddNewUserCommand
+
+
+        #region RemoveUserCommand
+        /// <summary>Command for delete an User</summary>
+        private ICommand _RemoveUserCommand;
+        public ICommand RemoveUserCommand => _RemoveUserCommand
+            ??= new LambdaCommand(OnRemoveUserCommandExecuted, CanRemoveUserCommandExecute);
+
+        //Method for permisions for the Command RemoveUser
+        private bool CanRemoveUserCommandExecute(object parameter) 
+        {
+            if (SelectedUser == null || SelectedUser.Name == null) return false;
+            return true;
+        }
+
+        //Method for execution for the Command RemoveUser
+        private void OnRemoveUserCommandExecuted(object parameter) 
+        {
+            //TODO: Must be an additional message with confirmation about detete
+        }
+        #endregion RemoveUserCommand
 
 
         #region ClearFilterCommand
@@ -124,12 +143,12 @@ namespace Als.ViewModels
 
         #region CONSTRUCTOR
 
-        public UserManagerWindowVewModel(MainWindowViewModel mainViewModel)
+        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel)
         {
-            mainWindowViewModel = mainViewModel;
+            _MainWindowViewModel = MainViewModel;
 
             //Creating of the collection of users for demonstration at DataGrid and filtration
-            SelectedItems = CollectionViewSource.GetDefaultView(mainWindowViewModel.UserCollection);
+            SelectedItems = CollectionViewSource.GetDefaultView(_MainWindowViewModel.UserCollection);
         }
 
         #endregion CONSTRUCTOR

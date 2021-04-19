@@ -45,11 +45,12 @@
                           HeadersVisibility="Column"
                           AlternatingRowBackground="AliceBlue" 
                           Background="White"
-                          GridLinesVisibility="All"
+                          GridLinesVisibility="Horizontal"
                           HorizontalGridLinesBrush="AliceBlue"
-                          VerticalGridLinesBrush="DarkGray"
                           AutoGenerateColumns="False"
-                          CanUserReorderColumns="False" 
+                          CanUserReorderColumns="False"
+                          CanUserSortColumns="True"
+                          CanUserResizeRows="False"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
                           IsReadOnly="True"
@@ -75,7 +76,7 @@
 
             <GroupBox Grid.Row="0" Margin="10">
                 <GroupBox.Header>
-                    <TextBlock Text="{x:Static dict:UserManagerWindowDict.UserModeDefault}" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding UserMode}" FontWeight="Bold"/>
                 </GroupBox.Header>
                 <DockPanel>
                     <Grid DockPanel.Dock="Top">
@@ -154,16 +155,8 @@
                         </ComboBox>
 
                         <TextBox x:Name="txt" Grid.Column="1" Grid.Row="8" 
-                                 Style="{DynamicResource txtHidenModeTriggerStyle}">
-                            <!--<TextBox.Text>
-                                <Binding Path="SelectedUser.PositionId"
-                                         ConverterParameter="Position">
-                                    <Binding.Converter>
-                                        <converter:TitleByIdConverter/>
-                                    </Binding.Converter>
-                                </Binding>
-                            </TextBox.Text>-->
-                        </TextBox>
+                                 Style="{DynamicResource txtHidenModeTriggerStyle}" Text="{Binding SelectedUser.Position.Name}"/>
+
 
                         <ComboBox Grid.Column="1" Grid.Row="9" 
                                   Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
@@ -186,23 +179,14 @@
                             </ComboBox.SelectedIndex>-->
                         </ComboBox>
 
-                        <TextBox Grid.Column="1" Grid.Row="9" Style="{DynamicResource txtHidenModeTriggerStyle}">
-                            <!--<TextBox.Text>
-                                <Binding Path="SelectedUser.RoleId" 
-                                         ConverterParameter="Role">
-                                    <Binding.Converter>
-                                        <converter:TitleByIdConverter/>
-                                    </Binding.Converter>
-                                </Binding>
-                            </TextBox.Text>-->
-                        </TextBox>
+                        <TextBox Grid.Column="1" Grid.Row="9" Style="{DynamicResource txtHidenModeTriggerStyle}" Text="{Binding SelectedUser.Role.Name}"/>
                     </Grid>
 
                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"  HorizontalAlignment="Right">
 
-                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="Delete" Command="{Binding DeleteOfUserCommand}"/>
+                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="{x:Static dict:UserManagerWindowDict.ButtonDelete}" Command="{Binding RemoveUserCommand}"/>
 
-                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="Add new user" Command="{Binding AddNewUserCommand}">
+                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="{x:Static dict:UserManagerWindowDict.ButtonAdd}" Command="{Binding AddNewUserCommand}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="True"/>
@@ -210,7 +194,7 @@
                             </i:Interaction.Triggers>
                         </Button>
 
-                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="Edit user" Command="{Binding EditUserCommand}">
+                        <Button Style="{DynamicResource btnCollapsedModeTriggerStyle}" Content="{x:Static dict:UserManagerWindowDict.ButtonEdit}" Command="{Binding EditUserCommand}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="True"/>
@@ -218,7 +202,7 @@
                             </i:Interaction.Triggers>
                         </Button>
 
-                        <Button Style="{DynamicResource btnVisibleModeTriggerStyle}" Content="Save" Command="{Binding SaveChangingsByUserCommand}">
+                        <Button Style="{DynamicResource btnVisibleModeTriggerStyle}" Content="{x:Static dict:UserManagerWindowDict.ButtonSave}" Command="{Binding SaveChangingsByUserCommand}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="False"/>
@@ -226,7 +210,7 @@
                             </i:Interaction.Triggers>
                         </Button>
 
-                        <Button Style="{DynamicResource btnVisibleModeTriggerStyle}" Content="Cancel" Command="{Binding CancelOfUserEditModeCommand}">
+                        <Button Style="{DynamicResource btnVisibleModeTriggerStyle}" Content="{x:Static dict:UserManagerWindowDict.ButtonCancel}" Command="{Binding CancelOfUserEditModeCommand}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <i:ChangePropertyAction TargetName="chkEditModeControl" PropertyName="IsChecked" Value="False"/>
@@ -239,7 +223,7 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10">
                 <CheckBox x:Name="chkEditModeControl" Content="EditModeControl" Visibility="Hidden" VerticalAlignment="Center"/>
-                <Button Style="{StaticResource btnDefaultStyle}" Content="Close" IsCancel="True"/>
+                <Button Style="{StaticResource btnDefaultStyle}" Content="{x:Static dict:UserManagerWindowDict.ButtonClose}" IsCancel="True"/>
             </StackPanel>
 
         </Grid>

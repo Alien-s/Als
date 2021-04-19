@@ -7,6 +7,10 @@
     <StartupObject>Als.Program</StartupObject>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Update="Resources\Dictionaries\MainWindowDict.Designer.cs">
       <DesignTime>True</DesignTime>
