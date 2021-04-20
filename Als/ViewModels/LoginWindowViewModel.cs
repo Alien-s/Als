@@ -50,6 +50,7 @@ namespace Als.ViewModels
         //Method for execution for the Command LogInCommand
         private void OnLogInCommandExecuted(object parameter)
         {
+            //TODO: This is antipattern!! Must be decision without translation of the PasswodBox to ViewModel
             PasswordBox passwordBox = (PasswordBox)parameter;
             Password = passwordBox.Password;
 
@@ -66,6 +67,8 @@ namespace Als.ViewModels
 
             if (user.Role.Name.ToString().ToLower() != "blocked")
             {
+                if (user.Role.Name.ToString().ToLower() == "user") _MainWindowViewModel.CheckCurrentUserRole = true;
+
                 Access = "Success";
                 _MainWindowViewModel.CurrentUser = user;
                 Password = null;
@@ -81,8 +84,6 @@ namespace Als.ViewModels
         public LoginWindowViewModel(MainWindowViewModel MainViewModel)
         {
             _MainWindowViewModel = MainViewModel;
-
         }
-
     }
 }

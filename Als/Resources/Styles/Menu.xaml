@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="mnuModeTriggerStyle" TargetType="MenuItem" BasedOn="{x:Null}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=chkCurrentUserRole, Path=IsChecked}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

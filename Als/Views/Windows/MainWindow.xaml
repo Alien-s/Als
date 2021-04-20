@@ -17,32 +17,43 @@
     </i:Interaction.Triggers>
 
     <DockPanel>
-        <Grid DockPanel.Dock="Top" Background="LightGray">
+        <Grid DockPanel.Dock="Top" Background="#FFF0F0F0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Menu Grid.Column="0" Background="LightGray">
-                <MenuItem Header="Main">
-                    <MenuItem Header="Log Out"/>
-                    <Separator Margin="0,10,0,5"/>
-                    <MenuItem Header="Exit" Command="{StaticResource ExitFromApplicationCommand}"/>
+            <Menu Grid.Column="0" >
+                <MenuItem Header="{x:Static dict:MainWindowDict.Main}">
+                    <MenuItem Header="{x:Static dict:MainWindowDict.LogOut}"/>
+                    <Separator/>
+                    <MenuItem Header="{x:Static dict:MainWindowDict.Exit}" Command="{StaticResource ExitFromApplicationCommand}"/>
                 </MenuItem>
-                <MenuItem Header="Users">
-                    <MenuItem Header="User's management" Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:UserManagerWindow}"/>
+                <MenuItem Style="{StaticResource mnuModeTriggerStyle}" Header="{x:Static dict:MainWindowDict.Users}">
+                    <MenuItem Header="{x:Static dict:MainWindowDict.UserManagement}" Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:UserManagerWindow}"/>
+                    <MenuItem Header="{x:Static dict:MainWindowDict.PositionManagement}"/>
+                </MenuItem>
+                <MenuItem Header="{x:Static dict:MainWindowDict.Producers}">
+                    <MenuItem Header="{x:Static dict:MainWindowDict.ProducerManagement}"/>
+                </MenuItem>
+                <MenuItem Header="{x:Static dict:MainWindowDict.Help}">
+                    <MenuItem Header="{x:Static dict:MainWindowDict.About}"/>
                 </MenuItem>
             </Menu>
-            
+
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <CheckBox x:Name="chkCurrentUserRole" IsChecked="{Binding CheckCurrentUserRole}" Visibility="Collapsed"/>
                 <TextBlock Text="{Binding CurrentUser.Role.Name}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                <TextBlock Text="{Binding CurrentUser.Name}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Run Text="{Binding CurrentUser.Name}"/>
+                    <Run Text="{Binding CurrentUser.Surname}"/>
+                </TextBlock>
             </StackPanel>
 
         </Grid>
 
         <StatusBar DockPanel.Dock="Bottom"/>
-        
+
         <StackPanel/>
     </DockPanel>
 </Window>

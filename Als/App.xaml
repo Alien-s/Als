@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="Resources\Styles\Button.xaml"/>
                 <ResourceDictionary Source="Resources\Styles\ComboBox.xaml"/>
                 <ResourceDictionary Source="Resources\Styles\Colors.xaml"/>
+                <ResourceDictionary Source="Resources\Styles\Menu.xaml"/>
                 <ResourceDictionary Source="Resources\Styles\TextBox.xaml"/>
                 <ResourceDictionary Source="Resources\Styles\TextBlock.xaml"/>
 
