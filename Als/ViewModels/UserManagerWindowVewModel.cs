@@ -1,8 +1,12 @@
 ﻿using Als.Infrastructure.Commands.LambdaCommands;
+using Als.Interfaces;
 using Als.MDB.Entities;
 using Als.Services.Interfaces;
 using Als.ViewModels.BaseViewModel;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -15,6 +19,20 @@ namespace Als.ViewModels
 
         /// <summary>Property for reference to the Properties of the MainWindowViewModel</summary>
         private MainWindowViewModel _MainWindowViewModel;
+
+        /// <summary>Repository of Positions</summary>
+        private IRepository<Position> _PositionRepository;
+
+        /// <summary>Repository of Roles</summary>
+        private IRepository<Role> _RoleRepository;
+
+        /// <summary>INotifyProperty for Position collection</summary>
+        private ObservableCollection<Position> _PositionCollection = new ObservableCollection<Position>();
+        public ObservableCollection<Position> PositionCollection { get => _PositionCollection; set => Set(ref _PositionCollection, value); }
+
+        /// <summary>INotifyProperty for Role collection</summary>
+        private ObservableCollection<Role> _RoleCollection = new ObservableCollection<Role>();
+        public ObservableCollection<Role> RoleCollection { get => _RoleCollection; set => Set(ref _RoleCollection, value); }
 
         /// <summary>Property UserDialog</summary>
         private IUserDialog _UserDialog;
@@ -52,14 +70,21 @@ namespace Als.ViewModels
         /// <summary>LoadUserManagerWindowCommand</summary>
         private ICommand _LoadUserManagerWindowCommand;
         public ICommand LoadUserManagerWindowCommand => _LoadUserManagerWindowCommand
-            ??= new LambdaCommand(OnLoadUserManagerWindowCommandExecuted, CanLoadUserManagerWindowCommandExecute);
+            ??= new LambdaCommandAsync(OnLoadUserManagerWindowCommandExecuted, CanLoadUserManagerWindowCommandExecute);
 
         //Method for permisions for the Command LoadUserManagerWindow
         private bool CanLoadUserManagerWindowCommandExecute(object parameter) => true;
 
         //Method for execution for the Command LoadUserManagerWindow
-        private void OnLoadUserManagerWindowCommandExecuted(object parameter) 
+        private async Task OnLoadUserManagerWindowCommandExecuted(object parameter) 
         {
+            /// <summary>Filling of the PositionCollection via ObservableCollection EXTENSION</summary>
+            PositionCollection.AddClear(await _PositionRepository.Items.ToArrayAsync());
+
+            /// <summary>Filling of the RoleCollection via ObservableCollection EXTENSION</summary>
+            RoleCollection.AddClear(await _RoleRepository.Items.ToArrayAsync());
+
+            //Clear Filter and Selected User
             ItemsFilterText = string.Empty;
             SelectedUser = null;
         }
@@ -86,11 +111,9 @@ namespace Als.ViewModels
             }
             else
             {
-                //_MainWindowViewModel.UserRepository.Add(new_user);
+                //Add of new User to DataBase and then Add to UserCollection
                 _MainWindowViewModel.UserCollection.Add(_MainWindowViewModel.UserRepository.Add(new_user));
             }
-
-
         }
         #endregion AddNewUserCommand
 
@@ -159,9 +182,11 @@ namespace Als.ViewModels
 
         #region CONSTRUCTOR
 
-        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel, IUserDialog UserDialog)
+        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel, IRepository<Position> PositionRepository, IRepository<Role> RoleRepository, IUserDialog UserDialog)
         {
             _MainWindowViewModel = MainViewModel;
+            _PositionRepository = PositionRepository;
+            _RoleRepository = RoleRepository;
             _UserDialog = UserDialog;
 
             //Creating of the collection of users for demonstration at DataGrid and filtration

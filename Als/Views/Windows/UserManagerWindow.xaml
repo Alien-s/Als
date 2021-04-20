@@ -136,47 +136,30 @@
 
                         <ComboBox Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
                                   Grid.Column="1" Grid.Row="8" 
-                                  ItemsSource="{Binding AllPositions}" 
+                                  ItemsSource="{Binding PositionCollection}" 
                                   SelectedItem="{Binding SelectedUser.Position, UpdateSourceTrigger=PropertyChanged}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Style="{StaticResource TextBlockAtComboBox}" 
-                                               Text="{Binding PositionTitle}"/>
+                                               Text="{Binding Name}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
-                            <!--<ComboBox.SelectedIndex>
-                                <Binding Path="SelectedUser.PositionId"
-                                         ConverterParameter="Position">
-                                    <Binding.Converter>
-                                        <converter:IndexByIdConverter/>
-                                    </Binding.Converter>
-                                </Binding>
-                            </ComboBox.SelectedIndex>-->
                         </ComboBox>
 
                         <TextBox x:Name="txt" Grid.Column="1" Grid.Row="8" 
                                  Style="{DynamicResource txtHidenModeTriggerStyle}" Text="{Binding SelectedUser.Position.Name}"/>
 
-
                         <ComboBox Grid.Column="1" Grid.Row="9" 
                                   Style="{DynamicResource cmbCollapsedModeTriggerStyle}" 
-                                  ItemsSource="{Binding AllRoles}" 
+                                  ItemsSource="{Binding RoleCollection}" 
                                   SelectedItem="{Binding SelectedUser.Role, UpdateSourceTrigger=PropertyChanged}">
 
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Style="{StaticResource TextBlockAtComboBox}" 
-                                               Text="{Binding RoleTitle}"/>
+                                               Text="{Binding Name}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
-                            <!--<ComboBox.SelectedIndex>
-                                <Binding Path="SelectedUser.RoleId"
-                                         ConverterParameter="Role">
-                                    <Binding.Converter>
-                                        <converter:IndexByIdConverter/>
-                                    </Binding.Converter>
-                                </Binding>
-                            </ComboBox.SelectedIndex>-->
                         </ComboBox>
 
                         <TextBox Grid.Column="1" Grid.Row="9" Style="{DynamicResource txtHidenModeTriggerStyle}" Text="{Binding SelectedUser.Role.Name}"/>
