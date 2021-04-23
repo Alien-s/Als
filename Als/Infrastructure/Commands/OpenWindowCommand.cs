@@ -5,6 +5,7 @@ using System.Windows;
 
 namespace Als.Infrastructure.Commands
 {
+    /// <summary>Class for opening the windows</summary>
     class OpenWindowCommand : Command
     {
         public override bool CanExecute(object parameter) => true;

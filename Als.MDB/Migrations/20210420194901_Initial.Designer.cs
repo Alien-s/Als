@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Als.MDB.Migrations
 {
     [DbContext(typeof(AlsDB))]
-    [Migration("20210418142415_Initial")]
+    [Migration("20210420194901_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

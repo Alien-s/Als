@@ -1,13 +1,8 @@
 ﻿using Als.Infrastructure.Commands.LambdaCommands;
-using Als.Interfaces;
 using Als.MDB.Entities;
+using Als.Services.Interfaces;
 using Als.ViewModels.BaseViewModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,10 +28,31 @@ namespace Als.ViewModels
         private string access;
         public string Access { get => access; set => Set(ref access, value); }
 
+        ///// <summary>Property UserDialog</summary>
+        //private IUserDialog _UserDialog;
+
         #endregion PROPERTIES
 
 
         #region COMMANDS
+
+        #region LoadLoginWindowCommand
+        /// <summary>LoadLoginWindow Command</summary>
+        private ICommand _LoadLoginWindowCommand;
+        public ICommand LoadLoginWindowCommand => _LoadLoginWindowCommand
+            ??= new LambdaCommand(OnLoadLoginWindowCommandExecuted, CanLoadLoginWindowCommandExecute);
+
+        //Method for permisions for the Command LoadLoginWindow
+        private bool CanLoadLoginWindowCommandExecute(object parameter) => true;
+
+        //Method for execution for the Command LoadLoginWindow
+        private void OnLoadLoginWindowCommandExecuted(object parameter) 
+        {
+            _MainWindowViewModel.CurrentUser = null;
+            _MainWindowViewModel.CheckCurrentUserRole = false;
+        }
+        #endregion LoadLoginWindowCommand
+
 
         #region LogInCommand
         /// <summary>Log In Command</summary>
@@ -58,20 +74,23 @@ namespace Als.ViewModels
 
             if (user == null || user.Role.Name.ToString().ToLower() == "blocked")
             {
-                MessageBox.Show("Sorry, access denied");
+                //TODO: _UserDialog.ConfirmError(Resources.Dictionaries.LoginWindowDict.ConfirmError.ToString(), Resources.Dictionaries.LoginWindowDict.CaptionError.ToString());
+
+                MessageBox.Show("Sorry, access denied", "Access Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
                 
-                //TODO: MessageBox is Not MVVM - must be changet to IUserDialog
                 //TODO: Is neccessary make a Validation
             }
 
             if (user.Role.Name.ToString().ToLower() != "blocked")
             {
-                if (user.Role.Name.ToString().ToLower() == "user") _MainWindowViewModel.CheckCurrentUserRole = true;
-
+                if (user.Role.Name.ToString().ToLower() == "administrator") _MainWindowViewModel.CheckCurrentUserRole = true;
                 Access = "Success";
                 _MainWindowViewModel.CurrentUser = user;
+
                 Password = null;
+                Login = null;
+                Access = null;
             }
         }
 

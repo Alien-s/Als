@@ -5,6 +5,8 @@ namespace Als.Services.Interfaces
 {
     internal interface IUserDialog
     {
-        bool Edit(User user);
+        bool ConfirmInformation(string Information, string Caption);
+        bool ConfirmWarning(string Warning, string Caption);
+        bool ConfirmError(string Error, string Caption);
     }
 }

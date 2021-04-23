@@ -12,9 +12,9 @@ namespace Als.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
+        #region PROPERTIES
         /// <summary>Repository of Users</summary>
         private IRepository<User> _UserRepository;
-        public IRepository<User> UserRepository { get => _UserRepository; }
 
         /// <summary>INotifyProperty for User collection</summary>
         private ObservableCollection<User> _UserCollection = new ObservableCollection<User>();
@@ -24,10 +24,11 @@ namespace Als.ViewModels
         private User _CurrentUser;
         public User CurrentUser { get => _CurrentUser; set => Set(ref _CurrentUser, value); }
 
-
         /// <summary>INotifyProperty for checking of the Role of current user</summary>
         private bool _CheckCurrentUserRole;
-        public bool CheckCurrentUserRole { get => _CheckCurrentUserRole; set => Set(ref _CheckCurrentUserRole, value); }
+        public bool CheckCurrentUserRole { get => _CheckCurrentUserRole; set => Set(ref _CheckCurrentUserRole, value); } 
+
+        #endregion PROPERTIES
 
 
         #region COMMANDS
@@ -44,13 +45,12 @@ namespace Als.ViewModels
         //Method for execution for the Command LoadUserCollection
         private async Task OnLoadUserCollectionCommandExecuted(object parameter)
         {
-            /// <summary>Filling of the UserCollection via ObservableCollection EXTENSION</summary>
+            //Filling of the UserCollection via ObservableCollection EXTENSION
             UserCollection.AddClear(await _UserRepository.Items.ToArrayAsync());
         }
         #endregion LoadUserCollectionCommand
 
         #endregion COMMANDS
-
 
 
         #region CONSTRUCTOR

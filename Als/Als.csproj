@@ -8,10 +8,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>D:\C#\C# Projects\Als\Als\Als.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Dictionaries\LoginWindowDict.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoginWindowDict.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Dictionaries\MainWindowDict.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -25,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Dictionaries\LoginWindowDict.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginWindowDict.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Dictionaries\MainWindowDict.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowDict.Designer.cs</LastGenOutput>
@@ -47,7 +56,6 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
     <PackageReference Include="System.Interactive.Async" Version="5.0.0" />
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
-    <PackageReference Include="Uno.Core" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>

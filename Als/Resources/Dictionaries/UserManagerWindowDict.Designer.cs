@@ -115,6 +115,16 @@ namespace Als.Resources.Dictionaries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to will be deleted!
+        ///Are you sure about this action?.
+        /// </summary>
+        public static string ConfirmWarning {
+            get {
+                return ResourceManager.GetString("ConfirmWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string Email {
@@ -264,6 +274,15 @@ namespace Als.Resources.Dictionaries {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting.
+        /// </summary>
+        public static string WarningCaption {
+            get {
+                return ResourceManager.GetString("WarningCaption", resourceCulture);
             }
         }
     }

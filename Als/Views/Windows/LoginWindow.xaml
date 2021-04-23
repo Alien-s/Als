@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         DataContext="{Binding LoginViewModel, Source={StaticResource Locator}}"
-        xmlns:local="clr-namespace:Als.Views.Windows"
-        
-       Height="245" MinHeight="245" Width="300" MinWidth="300" WindowStartupLocation="CenterScreen" Topmost="True" WindowStyle="None">
+        xmlns:local="clr-namespace:Als.Views.Windows"      
+        Height="245" MinHeight="245" Width="300" MinWidth="300" WindowStartupLocation="CenterScreen" Topmost="True" WindowStyle="None">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadLoginWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Window.Style>
         <Style TargetType="Window">

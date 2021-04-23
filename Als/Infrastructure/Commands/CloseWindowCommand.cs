@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace Als.Infrastructure.Commands
 {
+    /// <summary>Command for closing the windows</summary>
     class CloseWindowCommand : Command
     {
         public override bool CanExecute(object parameter) => parameter is Window;

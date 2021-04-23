@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace Als
@@ -16,9 +17,9 @@ namespace Als
 
         public static IHostBuilder CreateHostBuilder(string[] args) => Host
             .CreateDefaultBuilder(args)  //Make a Host via Class Host
-            //.ConfigureAppConfiguration((host, cfg) => cfg  //Make a configuration of the Application via Lambda
-            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true) //Type of the configuration file
-            //)
+            .ConfigureAppConfiguration((host, cfg) => cfg  //Make a configuration of the Application via Lambda
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true) //Type of the configuration file
+            )
             .ConfigureServices(App.ConfigureServices); //Method for Services Confoguration. But we make his at Class App          
     }
 }

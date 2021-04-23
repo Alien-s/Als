@@ -18,13 +18,16 @@ namespace Als.ViewModels
         #region PROPERTIES
 
         /// <summary>Property for reference to the Properties of the MainWindowViewModel</summary>
-        private MainWindowViewModel _MainWindowViewModel;
+        private readonly MainWindowViewModel _MainWindowViewModel;
+
+        /// <summary>Repository of Users</summary>
+        private readonly IRepository<User> _UserRepository;
 
         /// <summary>Repository of Positions</summary>
-        private IRepository<Position> _PositionRepository;
+        private readonly IRepository<Position> _PositionRepository;
 
         /// <summary>Repository of Roles</summary>
-        private IRepository<Role> _RoleRepository;
+        private readonly IRepository<Role> _RoleRepository;
 
         /// <summary>INotifyProperty for Position collection</summary>
         private ObservableCollection<Position> _PositionCollection = new ObservableCollection<Position>();
@@ -78,10 +81,10 @@ namespace Als.ViewModels
         //Method for execution for the Command LoadUserManagerWindow
         private async Task OnLoadUserManagerWindowCommandExecuted(object parameter) 
         {
-            /// <summary>Filling of the PositionCollection via ObservableCollection EXTENSION</summary>
+            //Filling of the PositionCollection via ObservableCollection EXTENSION
             PositionCollection.AddClear(await _PositionRepository.Items.ToArrayAsync());
 
-            /// <summary>Filling of the RoleCollection via ObservableCollection EXTENSION</summary>
+            //Filling of the RoleCollection via ObservableCollection EXTENSION
             RoleCollection.AddClear(await _RoleRepository.Items.ToArrayAsync());
 
             //Clear Filter and Selected User
@@ -92,7 +95,7 @@ namespace Als.ViewModels
 
 
         #region AddNewUserCommand
-        /// <summary>Command for adding of the new User</summary>
+        /// <summary>Command for adding of new User</summary>
         private ICommand _AddNewUserCommand;
         public ICommand AddNewUserCommand => _AddNewUserCommand
             ??= new LambdaCommand(OnAddNewUserCommandExecuted, CanAddNewUserCommandExecute);
@@ -103,23 +106,62 @@ namespace Als.ViewModels
         //Method for execution for the Command AddNewUser
         private void OnAddNewUserCommandExecuted(object parameter) 
         {
-            var new_user = new User();
-
-            if (_UserDialog.Edit(new_user))
-            {
-                return;
-            }
-            else
-            {
-                //Add of new User to DataBase and then Add to UserCollection
-                _MainWindowViewModel.UserCollection.Add(_MainWindowViewModel.UserRepository.Add(new_user));
-            }
+            SelectedUser = new User();
+            UserMode = Resources.Dictionaries.UserManagerWindowDict.UserModeAdd;
         }
         #endregion AddNewUserCommand
 
 
+        #region EditUserCommand
+        /// <summary>Command for edit of User</summary>
+        private ICommand _EditUserCommand;
+        public ICommand EditUserCommand => _EditUserCommand
+            ??= new LambdaCommand(OnEditUserCommandExecuted, CanEditUserCommandExecute);
+
+        //Method for permisions for the Command EditUser
+        private bool CanEditUserCommandExecute(object parameter) 
+        {
+            if (SelectedUser == null || SelectedUser.Name == null) return false;
+            return true;
+        }
+
+        //Method for execution for the Command EditUser
+        private void OnEditUserCommandExecuted(object parameter) => UserMode = Resources.Dictionaries.UserManagerWindowDict.UserModeEdit;
+        #endregion EditUserCommand
+
+
+        #region SaveChangingsByUserCommand
+        private ICommand _SaveChangingsByUserCommand;
+        public ICommand SaveChangingsByUserCommand => _SaveChangingsByUserCommand 
+            ??= new LambdaCommand(OnSaveChangingsByUserCommandExecuted, CanSaveChangingsByUserCommandExecute);
+
+        //Method for permisions for the Command SaveChangingsByUser
+        private bool CanSaveChangingsByUserCommandExecute(object parameter) => true;
+
+        //Method for execution for the Command SaveChangingsByUser
+        private void OnSaveChangingsByUserCommandExecuted(object parameter)
+        {
+            //TODO: Is neccessary make a Validation
+            var new_user = SelectedUser;
+
+            if (SelectedUser.Id == 0)
+            {
+                _MainWindowViewModel.UserCollection.Add(_UserRepository.Add(new_user));
+            }
+            else
+            {
+                _UserRepository.Update(new_user);
+            }
+   
+            SelectedUser = null;
+            UserMode = Resources.Dictionaries.UserManagerWindowDict.UserModeDefault;
+        }
+
+        #endregion SaveChangingsByUserCommand
+
+
         #region RemoveUserCommand
-        /// <summary>Command for delete an User</summary>
+        /// <summary>Command for delete of User</summary>
         private ICommand _RemoveUserCommand;
         public ICommand RemoveUserCommand => _RemoveUserCommand
             ??= new LambdaCommand(OnRemoveUserCommandExecuted, CanRemoveUserCommandExecute);
@@ -134,7 +176,16 @@ namespace Als.ViewModels
         //Method for execution for the Command RemoveUser
         private void OnRemoveUserCommandExecuted(object parameter) 
         {
-            //TODO: Must be an additional message with confirmation about detete
+            var user_to_remove = SelectedUser;
+
+            if (!_UserDialog.ConfirmWarning(
+                $"{user_to_remove.Name} {user_to_remove.Surname} {Resources.Dictionaries.UserManagerWindowDict.ConfirmWarning}", Resources.Dictionaries.UserManagerWindowDict.WarningCaption)) return;
+
+            _UserRepository.Remove(user_to_remove.Id);
+            _MainWindowViewModel.UserCollection.Remove(user_to_remove);
+
+            SelectedUser = null;
+
         }
         #endregion RemoveUserCommand
 
@@ -162,7 +213,7 @@ namespace Als.ViewModels
 
         #region FILTER OF LIST OF THE USERS
 
-        //This method is filtering of the users depends of the request from text field
+        /// <summary>This method is filtering of the users depends of the request from text field</summary>
         private bool Filter(object obj)
         {
             User currentUser = obj as User;
@@ -182,9 +233,11 @@ namespace Als.ViewModels
 
         #region CONSTRUCTOR
 
-        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel, IRepository<Position> PositionRepository, IRepository<Role> RoleRepository, IUserDialog UserDialog)
+        //Constructor
+        public UserManagerWindowVewModel(MainWindowViewModel MainViewModel, IRepository<User> UserRepository, IRepository<Position> PositionRepository, IRepository<Role> RoleRepository, IUserDialog UserDialog)
         {
             _MainWindowViewModel = MainViewModel;
+            _UserRepository = UserRepository;
             _PositionRepository = PositionRepository;
             _RoleRepository = RoleRepository;
             _UserDialog = UserDialog;

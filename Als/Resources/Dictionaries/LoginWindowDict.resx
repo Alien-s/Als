@@ -117,80 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ButtonAdd" xml:space="preserve">
-    <value>Add new user</value>
+  <data name="CaptionError" xml:space="preserve">
+    <value>Access Error</value>
   </data>
-  <data name="ButtonCancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="ButtonClose" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="ButtonDelete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="ButtonEdit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="ButtonSave" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="ConfirmWarning" xml:space="preserve">
-    <value>will be deleted!
-Are you sure about this action?</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="Firstname" xml:space="preserve">
-    <value>Firstname</value>
-  </data>
-  <data name="Handy" xml:space="preserve">
-    <value>Handy</value>
-  </data>
-  <data name="Id" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="Patronymic" xml:space="preserve">
-    <value>Patronymic*</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="Position" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="Positions" xml:space="preserve">
-    <value>Positions</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Role</value>
-  </data>
-  <data name="Surname" xml:space="preserve">
-    <value>Surname</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>User manager</value>
-  </data>
-  <data name="UserModeAdd" xml:space="preserve">
-    <value>Add new User</value>
-  </data>
-  <data name="UserModeDefault" xml:space="preserve">
-    <value>User Info</value>
-  </data>
-  <data name="UserModeEdit" xml:space="preserve">
-    <value>Edit User</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
-  </data>
-  <data name="WarningCaption" xml:space="preserve">
-    <value>Deleting</value>
+  <data name="ConfirmError" xml:space="preserve">
+    <value>Sorry, access denied</value>
   </data>
 </root>

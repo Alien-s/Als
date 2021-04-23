@@ -3,7 +3,7 @@
 
     <Style x:Key="mnuModeTriggerStyle" TargetType="MenuItem" BasedOn="{x:Null}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding ElementName=chkCurrentUserRole, Path=IsChecked}" Value="True">
+            <DataTrigger Binding="{Binding ElementName=chkCurrentUserRole, Path=IsChecked}" Value="False">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
         </Style.Triggers>

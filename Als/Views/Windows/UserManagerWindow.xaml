@@ -41,7 +41,7 @@
                 <DataGrid x:Name="listOfUsersDataGrid" 
                           Margin="10,5" FontSize="12"
                           ItemsSource="{Binding SelectedItems}" 
-                          SelectedItem="{Binding Path=SelectedUser}"
+                          SelectedItem="{Binding Path=SelectedUser, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                           HeadersVisibility="Column"
                           AlternatingRowBackground="AliceBlue" 
                           Background="White"

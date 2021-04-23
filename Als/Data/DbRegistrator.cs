@@ -7,8 +7,10 @@ using System;
 
 namespace Als.Data
 {
+    /// <summary>Class for registration of Database</summary>
     public static class DbRegistrator
     {
+        /// <summary>Methode for registration of Database and Repositoies</summary>
         public static IServiceCollection AddDataBase(this IServiceCollection services, IConfiguration Configuration) => services
             .AddDbContext<AlsDB>(opt =>
             {

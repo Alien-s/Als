@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace Als.Infrastructure.Commands
 {
+    /// <summary>Command for Exit from Application</summary>
     class ExitFromApplicationCommand : Command
     {
         public override bool CanExecute(object parameter) => true;

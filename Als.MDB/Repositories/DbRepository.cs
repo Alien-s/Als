@@ -93,11 +93,11 @@ namespace Als.MDB.Repositories
 
         public void Remove(int id)
         {
-            //var item = Get(id);
-            //if (item is null) return;
-            //alphaDB.Remove(item);
+            var item = Get(id);
+            if (item is null) return;
+            _db.Remove(item);
 
-            _db.Remove(new T { Id = id });
+            //_db.Remove(new T { Id = id });
 
             if (AutoSaveChanges)
             {

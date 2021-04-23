@@ -3,6 +3,7 @@
 
 namespace Als.ViewModels
 {
+    /// <summary> Class for Properties of ViewModels</summary>
     internal class ViewModelLocator
     {
         public MainWindowViewModel MainViewModel => App.Services.GetRequiredService<MainWindowViewModel>();

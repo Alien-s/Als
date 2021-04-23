@@ -25,11 +25,11 @@
 
             <Menu Grid.Column="0" >
                 <MenuItem Header="{x:Static dict:MainWindowDict.Main}">
-                    <MenuItem Header="{x:Static dict:MainWindowDict.LogOut}"/>
+                    <MenuItem Header="{x:Static dict:MainWindowDict.LogOut}" Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:LoginWindow}"/>
                     <Separator/>
                     <MenuItem Header="{x:Static dict:MainWindowDict.Exit}" Command="{StaticResource ExitFromApplicationCommand}"/>
                 </MenuItem>
-                <MenuItem Style="{StaticResource mnuModeTriggerStyle}" Header="{x:Static dict:MainWindowDict.Users}">
+                <MenuItem Style="{StaticResource mnuModeTriggerStyle}" Header="{x:Static dict:MainWindowDict.Users}" >
                     <MenuItem Header="{x:Static dict:MainWindowDict.UserManagement}" Command="{StaticResource OpenWindowCommand}" CommandParameter="{x:Type local:UserManagerWindow}"/>
                     <MenuItem Header="{x:Static dict:MainWindowDict.PositionManagement}"/>
                 </MenuItem>
@@ -43,7 +43,7 @@
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <CheckBox x:Name="chkCurrentUserRole" IsChecked="{Binding CheckCurrentUserRole}" Visibility="Collapsed"/>
-                <TextBlock Text="{Binding CurrentUser.Role.Name}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock Text="{Binding CurrentUser.Role.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 <TextBlock FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <Run Text="{Binding CurrentUser.Name}"/>
                     <Run Text="{Binding CurrentUser.Surname}"/>
